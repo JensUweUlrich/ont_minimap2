@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.1.0)
 # This version should match the version of minimap2 used as closely as possible.
 # It might not match if we have to update the ont_minimap2 project itself.
 project(minimap2
-    VERSION 2.17.0
+    VERSION 2.17.2
     LANGUAGES C
 )
 
