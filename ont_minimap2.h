@@ -62,7 +62,7 @@ extern "C" {
      */
     EXPORT void ontmm_unload_index(mm_idx_t *index);
 
-    EXPORT char *ontmm_test() { return strdup("Hello World."); }
+//    EXPORT char *ontmm_test() { return strdup("Hello World."); }
 
 #ifdef __cplusplus
 }
