@@ -146,7 +146,7 @@ add_library(libminimap2
 )
 
 add_library(ont_minimap2
-	SHARED
+	STATIC
 		ont_minimap2.c
 )
 
