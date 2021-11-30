@@ -10,11 +10,8 @@ project(minimap2
 # This is the reference of the minimap2 repo that we'll build into the library.
 set(MINIMAP2_REF "v2.17")
 
-#include(FindZLIB)
+include(FindZLIB)
 
-if(WIN32)
-  add_compile_options("/MT")
-endif()
 find_package (Threads)
 
 enable_testing()
@@ -125,7 +122,7 @@ if(ARM_BUILD)
         include_directories(clone/sse2neon)
 endif()
 
-add_library(libminimap2 STATIC
+add_library(libminimap2
         clone/kthread.c
         clone/kalloc.c
         clone/ksw2_extz2_sse.c
@@ -148,10 +145,11 @@ add_library(libminimap2 STATIC
         clone/ksw2_ll_sse.c
 )
 
-add_library(ont_minimap2
-	STATIC
-		ont_minimap2.c
-)
+if(WIN32)
+	add_library(ont_minimap2 SHARED	ont_minimap2.c)
+else()
+	add_library(ont_minimap2 STATIC	ont_minimap2.c)
+endif()
 
 set_target_properties(ont_minimap2
     PROPERTIES
@@ -172,14 +170,10 @@ add_test(
 )
 
 ########################################################################## compilation settings ###
-message(STATUS ${ZLIB_LIBRARIES})
-if (NOT zlib)
-  add_library(zlib STATIC IMPORTED)
-  set_target_properties(zlib PROPERTIES IMPORTED_LOCATION ${ZLIB_LIBRARIES})
-endif()
+
 target_link_libraries(libminimap2
 	PRIVATE
-		zlib
+	${ZLIB_LIBRARIES}
 )
 
 target_link_libraries(minimap2
