@@ -10,7 +10,7 @@ project(minimap2
 # This is the reference of the minimap2 repo that we'll build into the library.
 set(MINIMAP2_REF "v2.17")
 
-include(FindZLIB)
+#include(FindZLIB)
 
 if(WIN32)
   add_compile_options("/MT")
