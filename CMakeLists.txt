@@ -14,6 +14,7 @@ include(FindZLIB)
 
 if(WIN32)
   add_compile_options("/MT")
+endif()
 find_package (Threads)
 
 enable_testing()
