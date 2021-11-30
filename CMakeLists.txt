@@ -173,9 +173,13 @@ add_test(
 
 ########################################################################## compilation settings ###
 message(STATUS ${ZLIB_LIBRARIES})
+if (NOT zlib)
+  add_library(zlib STATIC IMPORTED)
+  set_target_properties(zlib PROPERTIES IMPORTED_LOCATION ${ZLIB_LIBRARIES})
+endif()
 target_link_libraries(libminimap2
 	PRIVATE
-		${ZLIB_LIBRARIES}
+		zlib
 )
 
 target_link_libraries(minimap2
