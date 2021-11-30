@@ -12,6 +12,8 @@ set(MINIMAP2_REF "v2.17")
 
 include(FindZLIB)
 
+if(WIN32)
+  add_compile_options("/MT")
 find_package (Threads)
 
 enable_testing()
@@ -122,7 +124,7 @@ if(ARM_BUILD)
         include_directories(clone/sse2neon)
 endif()
 
-add_library(libminimap2
+add_library(libminimap2 STATIC
         clone/kthread.c
         clone/kalloc.c
         clone/ksw2_extz2_sse.c
