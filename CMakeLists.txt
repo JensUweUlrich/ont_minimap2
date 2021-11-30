@@ -172,7 +172,7 @@ add_test(
 )
 
 ########################################################################## compilation settings ###
-
+message(STATUS ${ZLIB_LIBRARIES})
 target_link_libraries(libminimap2
 	PRIVATE
 		${ZLIB_LIBRARIES}
